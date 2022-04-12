@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ThreeJS Starter</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/heatmap.js/2.0.2/heatmap.min.js"></script>
+  </head>
+  <body>
+    <div id="heatmap" class="heatmap">
+      <div class="legend">
+        <div class="grandent">
+          <span>稀疏</span>
+          <svg>
+            <defs>
+              <linearGradient id="gradient">
+                <stop offset="10%" stop-color="rgb(0, 0, 255)" />
+                <stop offset="30%" stop-color="rgb(0, 255, 0)" />
+                <stop offset="50%" stop-color="rgb(255, 255, 0)" />
+                <stop offset="80%" stop-color="rgb(255, 155, 0)" />
+                <stop offset="100%" stop-color="rgb(255, 0, 0)" />
+              </linearGradient>
+            </defs>
+            <rect height="14" width="300" style="fill: url(#gradient)" />
+          </svg>
+          <span>密集</span>
+        </div>
+        <!-- <div class="flow">
+          <div class="empty"/>
+          <div class="number">
+            <span>0</span>
+            <span id="max">5000</span>
+          </div>
+          <span>（百人）</span>
+        </div> -->
+      </div>
+    </div>
+    <!-- <canvas class="webgl"></canvas> -->
+  </body>
+</html>

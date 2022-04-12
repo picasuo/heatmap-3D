@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100vh;
+  font-family: 'Poppins';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+} */
+.heatmap {
+  width: 1200px;
+  height: 800px;
+  position: relative;
+}
+.legend {
+  height: 40px;
+  position: absolute;
+  right: 4%;
+  bottom: 8%;
+}
+.grandent {
+  width: 360px;
+  height: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+.flow {
+  width: 380px;
+  display: flex;
+}
+.empty {
+  width: 24px;
+  margin-right: 5px;
+}
+.number {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+span {
+  font-weight: 400;
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  color: #7d7d7d;
+  line-height: 14px;
+}
