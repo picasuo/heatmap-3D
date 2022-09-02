@@ -1,19 +1,20 @@
-import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { Earcut } from 'three/src/extras/Earcut'
-import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js'
-import * as dat from 'dat.gui'
-import axiosInstance from './helper'
 import floorData from './floor.json'
-import heatmapInstance from './heatmap'
+import './style.css'
 
 const getGeometry = (points, height) => {
   if (points.length < 3) return
+
   const totalPoints = points.concat(
-    points.map(p => [p[0], height + p[1], p[2]])
+    points.map(p => [p[0], height + p[1], p[2]]),
   )
+
   const vertices = totalPoints.map(p => new THREE.Vector3(p[0], p[1], p[2]))
+  //   // todo
+  //   console.log('points', points)
+
   const faces = []
   const length = points.length
   for (let i = 0; i < length; i++) {
@@ -26,20 +27,24 @@ const getGeometry = (points, height) => {
       faces.push(new THREE.Face3(length, length + i, i))
     }
   }
+  // !获取每个建筑物平面上所有顶点的坐标，放入一个数组中，用于生成三角面
   const triangles = Earcut.triangulate(points.map(p => [p[0], p[2]]).flat())
+  //   // todo
+  //   console.log('triangles', triangles)
+
   if (triangles && triangles.length !== 0) {
     for (let i = 0; i < triangles.length; i++) {
       const tlength = triangles.length
       if (i % 3 == 0 && i < tlength - 2) {
         faces.push(
-          new THREE.Face3(triangles[i], triangles[i + 1], triangles[i + 2])
+          new THREE.Face3(triangles[i], triangles[i + 1], triangles[i + 2]),
         ) //底部的三角面
         faces.push(
           new THREE.Face3(
             triangles[i] + length,
             triangles[i + 1] + length,
-            triangles[i + 2] + length
-          )
+            triangles[i + 2] + length,
+          ),
         ) //顶部的三角面
       }
     }
@@ -112,7 +117,7 @@ function draw() {
   // F1层楼
   // const coordinates = response.data[3].coordinate
   const coordinates = floorData[3].coordinate
-  // console.log('coordinates', coordinates)
+  console.log('coordinates', coordinates)
 
   const heatmap = document.getElementById('heatmap')
 
@@ -137,7 +142,7 @@ function draw() {
   //环境光对象添加到scene场景中
   scene.add(ambient)
   const light = new THREE.DirectionalLight(0xffffff, 1)
-  light.position.set(50, 70, 80)
+
   scene.add(light)
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
@@ -193,7 +198,7 @@ function draw() {
     g.add(drawBuild(points.map(p => [p[0] / scale, 0, p[1] / scale])))
   }
 
-  g.add(drawHeatMap(heatmapInstance._renderer.canvas))
+  //   g.add(drawHeatMap(heatmapInstance._renderer.canvas))
   floorGroup.add(g)
   scene.add(floorGroup)
 

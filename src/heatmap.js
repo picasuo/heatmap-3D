@@ -29,7 +29,10 @@ const heatmapPoints = formatHeatMapData()
 // console.log(heatmapPoints)
 let max = 0
 heatmapPoints.map(item => {
+  //!取到最大热力值
   max = Math.max(max, item.value)
+  //   // todo
+  //   console.log('max', max)
 })
 max = Math.round(max * 0.6)
 const data = {
@@ -52,6 +55,8 @@ function formatHeatMapData() {
     }
     list.push(obj)
   })
+  //   // todo
+  //   console.log('list', list)
 
   return list
 }
