@@ -18,7 +18,7 @@ const getGeometry = (points, height) => {
   const faces = []
   const length = points.length
   for (let i = 0; i < length; i++) {
-    //侧面生成三角形
+    //!侧面生成三角形
     if (i !== length - 1) {
       faces.push(new THREE.Face3(i, i + 1, length + i + 1))
       faces.push(new THREE.Face3(length + i + 1, length + i, i))
